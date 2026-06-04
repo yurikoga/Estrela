@@ -1,0 +1,68 @@
+:root {
+    --star-active: #ffcc00; /* Amarelo intenso conforme a imagem */
+    --star-inactive: #d1d1d1; /* Cinza claro */
+    --text-color: #f7d542; /* Amarelo do texto */
+}
+
+body {
+    background-color: #ffffff; /* Fundo branco puro */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.rating-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* --- Mágica das Estrelas com CSS Flexbox --- */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse; /* Reverte a ordem do HTML (torna 1-2-3-4-5) */
+    gap: 5px; /* Espaçamento sutil entre estrelas */
+}
+
+/* Esconde os inputs radio originais */
+.star-rating input {
+    display: none;
+}
+
+/* Estilo padrão da Label (Estrela Inativa) */
+.star-rating label {
+    font-size: 50px; /* Tamanho grande das estrelas */
+    color: var(--star-inactive);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-text-stroke: 1px #8a8a8a; /* Borda fina cinza conforme a imagem */
+}
+
+/* --- Regras de Preenchimento (Hover e Check) --- */
+
+/* 1. Quando o mouse está sobre uma estrela, preenche ela e as posteriores (que eram anteriores no HTML) */
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--star-active);
+    -webkit-text-stroke: 1px transparent; /* Remove borda quando preenchido */
+}
+
+/* 2. Quando o radio está checado, preenche a estrela correspondente e as posteriores */
+.star-rating input:checked ~ label {
+    color: var(--star-active);
+    -webkit-text-stroke: 1px transparent;
+}
+
+/* --- Feedback de Texto --- */
+.feedback {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 32px; /* Tamanho grande do texto */
+    font-weight: 600;
+    color: var(--text-color);
+}
